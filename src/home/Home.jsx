@@ -17,7 +17,7 @@ export default function Home() {
     console.log(menus);
 
     return (
-        <div className='home'>
+        <div className='Home'>
 
         </div>
     )

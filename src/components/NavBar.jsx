@@ -7,8 +7,8 @@ export default function NavBar() {
         <header className='NavBar'>
             <Link to='/'>Menus For All</Link>
             <ul>
-                <NavItem name={'home'}/>
-                <NavItem name={'menus'}/>
+                <NavItem name={'home'} path={'/home'}/>
+                <NavItem name={'menus'} path={'/menus'}/>
             </ul>
         </header>
     )
@@ -16,12 +16,12 @@ export default function NavBar() {
 
 function NavItem(props) {
 
-    const { icon, name } = props;
+    const { icon, name, path } = props;
 
     return (
         <li className='NavItem'>
             {icon ? icon : null}
-            {name}
+            <Link to={path}>{name}</Link>
         </li>
     )
 }

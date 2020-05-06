@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from './NavBar';
+import Landing from './Landing';
 import { HashRouter } from 'react-router-dom';
 
 export default function Application() {
@@ -7,7 +7,7 @@ export default function Application() {
     return (
         <main className='Application'>
             <HashRouter>
-                <NavBar />
+                <Landing />
             </HashRouter>
         </main>
     )

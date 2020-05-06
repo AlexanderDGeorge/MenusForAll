@@ -3,11 +3,17 @@
     border: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
 a {
     text-decoration: none;
     color: inherit;
+    font-weight: 700;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .Application {
@@ -16,14 +22,29 @@ a {
     background-color: #cccccc;
 }
 
+.Landing {
+    height: 500px;
+    width: 100%;
+    background-image: url(assets/dinner.jpg);
+    background-position: 50%;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+.Landing img {
+    width: 100%;
+}
+
 .NavBar {
+    position: fixed;
     height: 10%;
     min-height: 100px;
     width: 100%;
-    background-color: #999999;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
 }
 
 .NavBar ul {

@@ -8,17 +8,32 @@
 
 :root {
     --red: #701C1C;
+    --peach: #FFE6A7;
 }
 
 .Application {
     height: 100vh;
     width: 100vw;
-    background-color: #cccccc;
+}
+
+.Authentication {
+    height: 100vh;
+    width: 100vw;
+}
+
+.Banner {
+    background-color: var(--red);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .Landing {
     height: 500px;
     width: 100%;
+    background-color: var(--red);
     background-image: url(assets/bowl.jpg);
     background-position: 50%;
     background-size: cover;

@@ -6,7 +6,7 @@ export default function NavBar() {
     return (
         <header className='NavBar'>
             <ul>
-                <NavItem name={'Home'} path={'/home'}/>
+                <NavItem name={'Home'} path={'/'}/>
                 <NavItem name={'Menus'} path={'/menus'}/>
             </ul>
 

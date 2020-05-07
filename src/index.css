@@ -8,7 +8,21 @@
 
 :root {
     --red: #701C1C;
+    --green: #4CB944;
+    --lightgreen: #69CE5F;
     --peach: #FFE6A7;
+    --camel: #BB9457;
+    --dark: #555555;
+    --blue: #0073bb;
+}
+
+a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .Application {
@@ -19,10 +33,68 @@
 .Authentication {
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
+}
+
+.AuthForm {
+    height: 80%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.AuthForm h2 {
+    color: var(--green);
+}
+
+.AuthForm form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.AuthForm span {
+    color: var(--dark);
+    font-size: 14px;
+}
+
+.AuthForm-input {
+    width: 60%;
+    border: 1px solid var(--dark);
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 18px;
+    margin: 10px;
+}
+
+.AuthForm-submit {
+    width: 60%;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 18px;
+    margin: 10px;
+    color: white;
+    background-color: var(--green);
+    transition: 0.5s linear;
+}
+
+.AuthForm-submit:hover {
+    background-color: var(--lightgreen);
+    transition: 0.5s linear;
+}
+
+.AuthForm div {
+    width: 60%;
+    border-bottom: 1px solid var(--dark);
+    text-align: center;
 }
 
 .Banner {
-    background-color: var(--red);
+    background-color: var(--green);
     color: white;
     padding: 20px;
     display: flex;
@@ -37,11 +109,7 @@
     background-image: url(assets/bowl.jpg);
     background-position: 50%;
     background-size: cover;
-    opacity: 0.8;
-}
-
-.Landing img {
-    width: 100%;
+    /* opacity: 0.8; */
 }
 
 .NavBar {

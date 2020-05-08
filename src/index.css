@@ -16,15 +16,6 @@
     --blue: #0073bb;
 }
 
-a {
-    color: var(--blue);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 .Application {
     height: 100vh;
     width: 100vw;
@@ -47,6 +38,15 @@ a:hover {
 
 .AuthForm h2 {
     color: var(--green);
+}
+
+.AuthForm a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.AuthForm a:hover {
+    text-decoration: underline;
 }
 
 .AuthForm form {

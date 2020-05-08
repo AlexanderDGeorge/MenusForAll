@@ -22,9 +22,4 @@ export const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export const signOut = () => auth.signOut();
 
-// firestore.settings({ timestampsInSnapshots: true });
-// this is no longer needed
-
-window.firebase = firebase;
-
 export default firebase;

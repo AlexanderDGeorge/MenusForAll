@@ -8,7 +8,6 @@ export function LogIn() {
         <div className='Authentication'>
             <Banner />
             <AuthForm type='login'/>
-            <FillSpace />
         </div>
     )
 }
@@ -18,7 +17,6 @@ export function SignUp() {
         <div className='Authentication'>
             <Banner />
             <AuthForm type='signup' />
-            <FillSpace />
         </div>
     )
 }
@@ -83,14 +81,6 @@ function AuthForm({ type }) {
                     <Link to='login'>Log In</Link>
                 </span>
             }
-        </section>
-    )
-}
-
-function FillSpace() {
-    return (
-        <section>
-
         </section>
     )
 }

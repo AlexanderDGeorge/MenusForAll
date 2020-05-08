@@ -1,24 +1,37 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { signInWithGoogle } from '../firebase';
+import { UserContext } from './Application';
 
 
 export function LogIn() {
-    return (
-        <div className='Authentication'>
-            <Banner />
-            <AuthForm type='login'/>
-        </div>
-    )
+    const { user } = useContext(UserContext);
+    
+    if (user) {
+        return <Redirect to='/'/>
+    } else {
+        return (
+            <div className='Authentication'>
+                <Banner />
+                <AuthForm type='login'/>
+            </div>
+        )
+    }
 }
 
 export function SignUp() {
-    return (
-        <div className='Authentication'>
-            <Banner />
-            <AuthForm type='signup' />
-        </div>
-    )
+    const { user } = useContext(UserContext);
+
+    if (user) {
+        return <Redirect to='/'/>
+    } else {
+        return (
+            <div className='Authentication'>
+                <Banner />
+                <AuthForm type='signup' />
+            </div>
+        )
+    }
 }
 
 function Banner() {

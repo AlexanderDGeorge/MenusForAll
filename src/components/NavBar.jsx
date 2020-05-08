@@ -5,7 +5,7 @@ import { signOut } from '../firebase';
 
 export default function NavBar() {
 
-    const { user, setUser } = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     return (
         <header className='NavBar'>

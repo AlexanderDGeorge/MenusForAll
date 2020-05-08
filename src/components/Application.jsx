@@ -12,7 +12,7 @@ export default function Application() {
 
 
     useEffect(() => {
-        auth.onAuthStateChanged(user => setUser({ user }));
+        auth.onAuthStateChanged(user => setUser(user));
     }, [])
 
     console.log(user);

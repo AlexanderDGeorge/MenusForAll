@@ -143,3 +143,21 @@
 .NavItem:hover {
     border-bottom: 2px solid white;
 }
+
+.User {
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.User img {
+    height: 100%;
+}
+
+.UserDropdown {
+    position: absolute;
+    bottom: -90px;
+    background-color: white;
+    height: 100px;
+    width: inherit;
+}

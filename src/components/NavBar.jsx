@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from './Application';
-import { signOut } from '../firebase';
+import User from './User';
 
 export default function NavBar() {
 
@@ -31,11 +31,5 @@ function NavItem(props) {
 
     return (
         <Link className='NavItem' to={path}>{icon} {name}</Link>
-    )
-}
-
-function User() {
-    return (
-        <button onClick={signOut}>Log Out</button>
     )
 }

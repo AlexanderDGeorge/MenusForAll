@@ -16,6 +16,7 @@ export default function Application() {
     }, [])
 
     console.log(user);
+    window.user = user;
 
     return (
         <main className='Application'>

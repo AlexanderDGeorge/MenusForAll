@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from './Application';
+import { signOut } from '../firebase';
 
 export default function NavBar() {
+
+    const { user, setUser } = useContext(UserContext);
 
     return (
         <header className='NavBar'>
@@ -10,10 +14,13 @@ export default function NavBar() {
                 <NavItem name={'Menus'} path={'/menus'}/>
             </ul>
 
-            <ul>
-                <NavItem name={'Log In'} path={'/login'}/>
-                <NavItem name={'Sign Up'} path={'/signup'}/>
-            </ul>
+            {user ? 
+                <User /> :
+                <ul>
+                    <NavItem name={'Log In'} path={'/login'}/>
+                    <NavItem name={'Sign Up'} path={'/signup'}/>
+                </ul>
+            }
         </header>
     )
 }
@@ -24,5 +31,11 @@ function NavItem(props) {
 
     return (
         <Link className='NavItem' to={path}>{icon} {name}</Link>
+    )
+}
+
+function User() {
+    return (
+        <button onClick={signOut}>Log Out</button>
     )
 }

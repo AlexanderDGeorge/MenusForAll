@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from './Application';
 import { signOut } from '../firebase';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 
 export default function User() {
     const { user } = useContext(UserContext);
@@ -9,6 +10,7 @@ export default function User() {
     return (
         <div className='User' onClick={() => setOpen(!open)}>
             <img src={user['photoURL']} alt=""/>
+            <MdKeyboardArrowDown />
             {open ? <UserDropdown /> : null}
         </div>
     )

@@ -14,6 +14,7 @@
     --camel: #BB9457;
     --dark: #555555;
     --blue: #0073bb;
+    --border-radius: 6px;
 }
 
 .Application {
@@ -65,7 +66,7 @@
 .AuthForm-input {
     width: 60%;
     border: 1px solid var(--dark);
-    border-radius: 6px;
+    border-radius: var(--border-radius);
     padding: 10px;
     font-size: 18px;
     margin: 10px;
@@ -73,7 +74,7 @@
 
 .AuthForm-submit {
     width: 60%;
-    border-radius: 6px;
+    border-radius: var(--border-radius);
     padding: 10px;
     font-size: 18px;
     margin: 10px;
@@ -105,11 +106,10 @@
 .Landing {
     height: 500px;
     width: 100%;
-    background-color: var(--red);
-    background-image: url(assets/bowl.jpg);
+    background-color: var(--green);
+    background-image: url(assets/over.jpg);
     background-position: 50%;
     background-size: cover;
-    /* opacity: 0.8; */
 }
 
 .NavBar {
@@ -145,19 +145,40 @@
 }
 
 .User {
+    position: relative;
     height: 60px;
+    width: 80px;
     display: flex;
     align-items: center;
+    background-color: var(--dark);
+    border-radius: var(--border-radius);
 }
 
 .User img {
     height: 100%;
+    border-radius: 6px 0 0 6px;
 }
 
 .UserDropdown {
     position: absolute;
-    bottom: -90px;
-    background-color: white;
-    height: 100px;
+    bottom: -155px;
+    right: 0;
+    background-color: var(--dark);
+    height: 150px;
+    width: 140px;
+    border-radius: var(--border-radius);
+}
+
+.UserDropdown button {
     width: inherit;
+    background: transparent;
+    color: white;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.UserDropdown button:hover {
+    background-color: #888888;
 }

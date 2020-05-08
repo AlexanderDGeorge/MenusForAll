@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import Landing from './Landing';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { LogIn, SignUp } from './Authentication';
-import { firestore, auth } from '../firebase';
+import { auth } from '../firebase';
 
 export const UserContext = createContext(null);
 

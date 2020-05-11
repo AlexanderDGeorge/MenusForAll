@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
+import { MdSearch } from 'react-icons/md';
 
 export default function Landing() {
 
@@ -13,28 +15,39 @@ export default function Landing() {
 }
 
 function Search () {
-    const []
+    const [keyword, setKeyword] = useState('');
+    const [city, setCity] = useState('');
 
     return (
         <section className='Landing-Search'>
-            <input 
-                type="text"
-            />
-
+            <form>
+                <input 
+                    type="text"
+                    value={keyword}
+                    onChange={e => setKeyword(e.target.value)}
+                    placeholder='Italian, Cafes, Fast Food...'
+                />
+                <input 
+                    type="text"
+                    value={city}
+                    onChange={e => setCity(e.target.value)}
+                    placeholder='Seattle'
+                />
+                <button>
+                    <MdSearch />
+                </button>
+            </form>
+            <Link>Advanced Search</Link>
         </section>
     )
 }
 
 function NearYou() {
 
-    // let mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
     return (
         <section className='Landing-Near'>
             <h2>Near You</h2>
-            {/* <div id='mapid'>
-
-            </div> */}
         </section>
     )
 }

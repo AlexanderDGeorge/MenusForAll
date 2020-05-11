@@ -33,7 +33,6 @@ function Search () {
                 let lon = position.coords.longitude;
                 console.log(lat);
                 console.log(lon);
-                // console.log(process.env.REACT_APP_ZOMATO_KEY);
                 const response = await zomatoRequest.get(`/cities?lat=${lat}$lon=${lon}&count=1`);
                 console.log(response)
             })

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
-import { MdSearch } from 'react-icons/md';
+import { MdSearch, MdLocationSearching } from 'react-icons/md';
+import axios from 'axios';
 
 export default function Landing() {
 
@@ -18,6 +19,27 @@ function Search () {
     const [keyword, setKeyword] = useState('');
     const [city, setCity] = useState('');
 
+    const zomatoRequest = axios.create({
+        baseURL: 'https://developers.zomato.com/api/v2.1',
+        headers: {
+            'user-key': process.env.REACT_APP_ZOMATO_KEY
+        }
+    })
+
+    async function getLocation() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(async function handle(position){
+                let lat = position.coords.latitude;
+                let lon = position.coords.longitude;
+                console.log(lat);
+                console.log(lon);
+                // console.log(process.env.REACT_APP_ZOMATO_KEY);
+                const response = await zomatoRequest.get(`/cities?lat=${lat}$lon=${lon}&count=1`);
+                console.log(response)
+            })
+        }
+    }
+
     return (
         <section className='Landing-Search'>
             <form>
@@ -25,19 +47,22 @@ function Search () {
                     type="text"
                     value={keyword}
                     onChange={e => setKeyword(e.target.value)}
-                    placeholder='Italian, Cafes, Fast Food...'
+                    placeholder='Italian, Cafes, Burritos...'
+                    required
                 />
                 <input 
                     type="text"
                     value={city}
                     onChange={e => setCity(e.target.value)}
-                    placeholder='Seattle'
+                    placeholder='Seattle, WA'
+                    required
                 />
+                <MdLocationSearching className='Landing-Location' onClick={getLocation}/>
                 <button>
                     <MdSearch />
                 </button>
             </form>
-            <Link>Advanced Search</Link>
+            <Link to='search'>Advanced Search</Link>
         </section>
     )
 }

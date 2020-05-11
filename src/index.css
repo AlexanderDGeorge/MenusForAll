@@ -129,6 +129,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.Landing-Location {
+    position: absolute;
+    right: 50px;
+    color: var(--dark) !important;
 }
 
 .Landing-Search input {
@@ -137,6 +144,7 @@
     margin: 5px;
     font-size: 18px;
     min-width: 300px;
+    width: 400px;
     border-radius: var(--border-radius);
 }
 
@@ -144,6 +152,8 @@
     border-radius: var(--border-radius);
     background-color: var(--green);
     transition: linear 0.3s;
+    height: 40px;
+    width: 40px;
 }
 
 .Landing-Search button:hover {
@@ -152,9 +162,10 @@
 }
 
 .Landing-Search svg {
-    height: 40px;
+    height: 30px;
     width: auto;
     padding: 5px;
+    color: white;
 }
 
 .Landing-Search a {

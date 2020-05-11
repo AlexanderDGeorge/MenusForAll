@@ -31,11 +31,13 @@ function Search () {
             navigator.geolocation.getCurrentPosition(async function handle(position){
                 let lat = position.coords.latitude;
                 let lon = position.coords.longitude;
-                console.log(lat);
-                console.log(lon);
-                const response = await zomatoRequest.get(`/cities?lat=${lat}$lon=${lon}&count=1`);
-                console.log(response)
+                // console.log('url', `/cities?lat=${lat}&lon=${lon}&count=1`);
+                const response = await zomatoRequest.get(`/cities?lat=${lat}&lon=${lon}`);
+                window.response = response;
+                setCity(response.data.location_suggestions[0].name);
             })
+        } else {
+            console.log('no geolocation')
         }
     }
 

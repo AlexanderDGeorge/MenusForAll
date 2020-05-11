@@ -15,7 +15,7 @@ export default function Application() {
         auth.onAuthStateChanged(user => setUser(user));
     }, [])
 
-    console.log(user);
+    // console.log(user);
     window.user = user;
 
     return (

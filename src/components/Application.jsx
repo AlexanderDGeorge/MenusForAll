@@ -32,24 +32,3 @@ export default function Application() {
         </main>
     )
 }
-
-// unsubscribeFromFirestore = null;
-// unsubscribeFromAuth = null;
-
-// componentDidMount = async () => {
-//   this.unsubscribeFromFirestore = firestore
-//     .collection('posts')
-//     .onSnapshot(snapshot => {
-//       const posts = snapshot.docs.map(collectIdsAndData);
-//       this.setState({ posts });
-//     });
-
-//   this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-//     this.setState({ user });
-//   });
-// };
-
-// componentWillUnmount = () => {
-//   this.unsubscribeFromFirestore();
-//   this.unsubscribeFromAuth();
-// };

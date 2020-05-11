@@ -104,9 +104,18 @@
 }
 
 .Landing {
-    height: 500px;
+    height: 100vh;
     width: 100%;
-    background-color: var(--green);
+}
+
+.Landing-Near {
+    height: 50%;
+    width: 100%;
+}
+
+.Landing-Search {
+    height: 70%;
+    width: 100%;
     background-image: url(assets/over.jpg);
     background-position: 50%;
     background-size: cover;
@@ -122,6 +131,7 @@
     justify-content: space-between;
     align-items: center;
     color: white;
+    /* background: rgba(0, 0, 0, 0.2); */
 }
 
 .NavBar ul {
@@ -146,8 +156,7 @@
 
 .User {
     position: relative;
-    height: 60px;
-    width: 80px;
+    height: 50px;
     display: flex;
     align-items: center;
     background-color: var(--dark);

@@ -10,7 +10,10 @@ export default function User() {
     return (
         <div className='User' onClick={() => setOpen(!open)}>
             <img src={user['photoURL']} alt=""/>
-            <MdKeyboardArrowDown />
+            <MdKeyboardArrowDown style={{
+                height: 24,
+                width: 'auto'
+            }}/>
             {open ? <UserDropdown /> : null}
         </div>
     )

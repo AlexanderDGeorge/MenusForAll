@@ -9,7 +9,10 @@ export default function NavBar() {
     const [scroll, setScroll] = useState(false);
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll)
+        window.addEventListener('scroll', handleScroll);
+        return function cleanup() {
+            window.removeEventListener('scroll', handleScroll);
+        }
     });
 
     function handleScroll(e) {

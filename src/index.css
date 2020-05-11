@@ -13,6 +13,7 @@
     --peach: #FFE6A7;
     --camel: #BB9457;
     --dark: #555555;
+    --light: #cccccc;
     --blue: #0073bb;
     --border-radius: 6px;
 }
@@ -111,7 +112,17 @@
 .Landing-Near {
     height: 50%;
     width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    /* background-color: var(--light); */
+
 }
+
+.Landing-Near h2 {
+    color: var(--lightgreen);
+}
+
 
 .Landing-Search {
     height: 70%;
@@ -132,7 +143,7 @@
     position: relative;
 }
 
-.Landing-Location {
+.Landing-Search-Locate {
     position: absolute;
     right: 50px;
     color: var(--dark) !important;

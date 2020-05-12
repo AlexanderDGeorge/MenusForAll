@@ -19,11 +19,12 @@
     flex-direction: column;
     align-items: center;
     padding: 40px 10px;
+    overflow-y: scroll;
 }
 
 .Search-Filter-Section {
-    min-height: 100px;
-    max-height: 250px;
+    min-height: 250px;
+    max-height: 350px;
     padding: 15px;
     width: 100%;
     display: flex;
@@ -57,7 +58,7 @@
 .SF-submit {
     position: fixed;
     bottom: 0;
-    height: 39px;
+    height: 40px;
     width: 300px;
     background-color: var(--green);
     color: white;

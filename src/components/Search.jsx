@@ -34,7 +34,9 @@ function SearchFilter() {
 
     return (
         <section className='Search-Filter'>
+            <section className='Search-Filter-Section'>
 
+            </section>
 
             <SearchFilterSection 
                 title={'Category'} optionsArray={['Delivery', 'Dine-out', 

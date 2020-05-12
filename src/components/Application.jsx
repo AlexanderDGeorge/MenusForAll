@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import Landing from './Landing';
+import Search from './Search';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { LogIn, SignUp } from './Authentication';
 import { auth } from '../firebase';
@@ -26,6 +27,7 @@ export default function Application() {
                     <LocationContext.Provider value={{ location, setLocation }}>
                         <Route path='/login' component={LogIn}/>
                         <Route path='/signup' component={SignUp}/>
+                        <Route path='/search' component={Search} />
                         <Route exact path='/' component={Landing}/>
                     </LocationContext.Provider>
                     </UserContext.Provider>

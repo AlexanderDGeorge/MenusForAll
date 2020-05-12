@@ -16,6 +16,7 @@
     --light: #dddddd;
     --blue: #0073bb;
     --border-radius: 6px;
+    --box-shadow: 5px 5px 20px 0;
 }
 
 .Application {
@@ -131,6 +132,11 @@
     width: 100%;
 }
 
+.Landing-Benefits {
+    height: 50%;
+    width: 100%;
+}
+
 .Landing-Categories {
     height: 50%;
     width: 100%;
@@ -168,10 +174,11 @@
 .Landing-Categories-Card:hover {
     border: 1px solid var(--lightgreen);
     color: var(--lightgreen);
+    box-shadow: var(--box-shadow);
 }
 
 .Landing-Categories-Card svg {
-    height: 50px;
+    height: 44px;
     width: auto;
 }
 
@@ -213,6 +220,7 @@
     min-width: 300px;
     width: 400px;
     border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
 .Landing-Search button {
@@ -221,6 +229,7 @@
     transition: linear 0.3s;
     height: 40px;
     width: 40px;
+    box-shadow: var(--box-shadow);
 }
 
 .Landing-Search button:hover {
@@ -247,14 +256,14 @@
 
 .NavBar {
     position: fixed;
-    height: 10%;
-    min-height: 100px;
+    height: 100px;
     width: 100%;
     padding: 0 10%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: white;
+    grid-area: nav;
 }
 
 .NavBar ul {

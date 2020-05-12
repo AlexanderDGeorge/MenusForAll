@@ -77,12 +77,12 @@ function Search () {
 
 function Categories() {
 
-    function CategoryCard({icon, name}) {
+    function CategoryCard({ icon, name }) {
         return (
-            <section className='Landing-Categories-Card'>
+            <Link to={{ pathname: '/search', state: { keyword: name }}} className='Landing-Categories-Card'>
                 {icon}
                 {name}
-            </section>
+            </Link>
         )
     }
 

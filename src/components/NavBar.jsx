@@ -6,7 +6,7 @@ import User from './User';
 export default function NavBar() {
 
     const { user } = useContext(UserContext);
-    const [scroll, setScroll] = useState(false);
+    const [scroll, setScroll] = useState('transparent');
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -15,17 +15,13 @@ export default function NavBar() {
         }
     });
 
-    function handleScroll(e) {
-        console.log(e);
-        if (window.scrollY > 100) {
-            setScroll(true);
-        } else {
-            setScroll(false);
-        }
+    function handleScroll() {
+        let val = window.scrollY / 200;
+        setScroll(`rgba(50, 50, 50, ${val})`);
     }
 
     return (
-        <header className='NavBar' style={scroll ? { backgroundColor: 'rgba(0, 0, 0, 0.7)' } : { backgroundColor: 'transparent' }}>
+        <header className='NavBar' style={{ backgroundColor: scroll }}>
             <ul>
                 <NavItem name={'Home'} path={'/'}/>
                 <NavItem name={'Menus'} path={'/menus'}/>

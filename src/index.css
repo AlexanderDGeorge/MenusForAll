@@ -115,8 +115,6 @@
     padding: 20px;
     display: flex;
     justify-content: center;
-    /* background-color: var(--light); */
-
 }
 
 .Landing-Near h2 {
@@ -127,6 +125,7 @@
 .Landing-Search {
     height: 70%;
     width: 100%;
+    background-color: var(--light);
     background-image: url(assets/over.jpg);
     background-position: 50%;
     background-size: cover;

@@ -5,17 +5,17 @@ import { LogIn, SignUp } from './Authentication';
 import { auth } from '../firebase';
 
 export const UserContext = createContext(null);
+export const LocationContext = createContext(null);
 
 export default function Application() {
 
     const [user, setUser] = useState(null);
-
+    const [location, setLocation] = useState(null);
 
     useEffect(() => {
         auth.onAuthStateChanged(user => setUser(user));
     }, [])
 
-    // console.log(user);
     window.user = user;
 
     return (
@@ -23,9 +23,11 @@ export default function Application() {
             <HashRouter>
                 <Switch>
                     <UserContext.Provider value={{ user, setUser }}>
+                    <LocationContext.Provider value={{ location, setLocation }}>
                         <Route path='/login' component={LogIn}/>
                         <Route path='/signup' component={SignUp}/>
                         <Route path='/' component={Landing}/>
+                    </LocationContext.Provider>
                     </UserContext.Provider>
                 </Switch>
             </HashRouter>

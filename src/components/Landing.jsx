@@ -2,17 +2,19 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 import { LocationContext } from './Application';
-import { MdSearch, MdLocationSearching } from 'react-icons/md';
+import { MdSearch, MdLocationSearching, MdLocalCafe, MdLocalBar, MdLocalDining, MdLocalPizza, MdAirplanemodeActive } from 'react-icons/md';
+import { FaLink, FaGithub, FaLinkedinIn, FaHamburger, FaFish, FaLeaf } from 'react-icons/fa';
 import axios from 'axios';
 
 export default function Landing() {
 
     return (
-        <header className='Landing'>
+        <section className='Landing'>
             <NavBar />
             <Search />
-            <NearYou />
-        </header>
+            <Categories />
+            <Credits />
+        </section>
     )
 }
 
@@ -73,12 +75,49 @@ function Search () {
     )
 }
 
-function NearYou() {
+function Categories() {
 
+    function CategoryCard({icon, name}) {
+        return (
+            <section className='Landing-Categories-Card'>
+                {icon}
+                {name}
+            </section>
+        )
+    }
 
     return (
-        <section className='Landing-Near'>
-            <h2>Near You</h2>
+        <section className='Landing-Categories'>
+            <h2>Search by Category</h2>
+            <div>
+                <CategoryCard icon={<MdLocalCafe />} name={'Cafes'}/>
+                <CategoryCard icon={<FaHamburger />} name={'Burgers'}/>
+                <CategoryCard icon={<MdLocalBar />} name={'Bars'} />
+                <CategoryCard icon={<MdLocalDining />} name={'Restaurants'}/>
+                <CategoryCard icon={<MdLocalPizza />} name={'Pizza'}/>
+                <CategoryCard icon={<FaFish />} name={'Seafood'} />
+                <CategoryCard icon={<MdAirplanemodeActive />} name={'International'} />
+                <CategoryCard icon={<FaLeaf />} name={'Vegetarian'} />
+            </div>
+        </section>
+    )
+}
+
+function Credits() {
+    return (
+        <section className="Credits">
+            <p>Hi! I'm looking for a job. Check me out!</p>
+            <div className="links">
+                <a href="https://github.com/AlexanderDGeorge">
+                    <FaGithub />
+                </a>
+                <a href="https://www.linkedin.com/in/alexander-george-410466151/">
+                    <FaLinkedinIn />
+                </a>
+                <a href="https://alexgeorge.dev">
+                    <FaLink />
+                </a>
+            </div>
         </section>
     )
 }

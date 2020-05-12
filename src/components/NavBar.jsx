@@ -16,7 +16,7 @@ export default function NavBar() {
     });
 
     function handleScroll() {
-        let val = window.scrollY / 200;
+        let val = window.scrollY / 400;
         setScroll(`rgba(50, 50, 50, ${val})`);
     }
 

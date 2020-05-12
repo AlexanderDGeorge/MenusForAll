@@ -13,7 +13,7 @@
     --peach: #FFE6A7;
     --camel: #BB9457;
     --dark: #555555;
-    --light: #cccccc;
+    --light: #dddddd;
     --blue: #0073bb;
     --border-radius: 6px;
 }
@@ -104,29 +104,82 @@
     align-items: center;
 }
 
+.Credits {
+    width: 100%;
+    background: var(--green);
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Credits svg {
+    height: 50px;
+    width: auto;
+    color: white;
+    padding: 20px;
+    box-sizing: content-box;
+}
+
+.Credits p{
+    color: white;
+    height: 20px;
+}
+
 .Landing {
     height: 100vh;
     width: 100%;
 }
 
-.Landing-Near {
+.Landing-Categories {
     height: 50%;
     width: 100%;
-    padding: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: var(--green);
+    background-color: var(--light);
 }
 
-.Landing-Near h2 {
+.Landing-Categories div {
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.Landing-Categories-Card {
+    height: 100px;
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: black;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--light);
+}
+
+.Landing-Categories-Card:hover {
+    border: 1px solid var(--lightgreen);
     color: var(--lightgreen);
 }
 
+.Landing-Categories-Card svg {
+    height: 50px;
+    width: auto;
+}
 
 .Landing-Search {
     height: 70%;
     width: 100%;
     background-color: var(--light);
-    background-image: url(assets/over.jpg);
+    background-image: url(assets/dinner.jpg);
     background-position: 50%;
     background-size: cover;
     display: flex;
@@ -146,6 +199,10 @@
     position: absolute;
     right: 50px;
     color: var(--dark) !important;
+}
+
+.Landing-Search-Locate:hover {
+    color: red !important;
 }
 
 .Landing-Search input {

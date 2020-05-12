@@ -26,7 +26,7 @@ export default function Application() {
                     <LocationContext.Provider value={{ location, setLocation }}>
                         <Route path='/login' component={LogIn}/>
                         <Route path='/signup' component={SignUp}/>
-                        <Route path='/' component={Landing}/>
+                        <Route exact path='/' component={Landing}/>
                     </LocationContext.Provider>
                     </UserContext.Provider>
                 </Switch>

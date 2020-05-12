@@ -39,6 +39,7 @@ function Search () {
             navigator.geolocation.getCurrentPosition(async function handle(position){
                 let lat = position.coords.latitude;
                 let lon = position.coords.longitude;
+                console.log(lat, lon);
                 const response = await zomatoRequest.get(`/cities?lat=${lat}&lon=${lon}`);
                 window.response = response;
                 setCity(response.data.location_suggestions[0].name);

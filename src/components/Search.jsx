@@ -1,15 +1,15 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import { LocationContext, UserContext } from './Application';
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { UserContext, SearchParamsContext } from './Application';
 import { MdSearch, MdLocationSearching } from 'react-icons/md';
 import axios from 'axios';
 import User from './User';
 
 export default function Search(props) {
 
-    console.log(props)
-    const location = useLocation();
-    console.log(location);
+    const { searchParams, setSearchParams } = useContext(SearchParamsContext);
+    console.log(searchParams);
+
 
     return (
         <section className='Search'>
@@ -30,7 +30,7 @@ function SearchHeader() {
             <SearchBar />
             {user ? 
                 <User /> :
-                <div>
+                <div className='SH-Auth'>
                     <Link to='/login'>Log In</Link>
                     <Link to='/signup'>Sign Up</Link>
                 </div>
@@ -40,13 +40,10 @@ function SearchHeader() {
 }
 
 export function SearchBar() {
+    
     const [keyword, setKeyword] = useState('');
     const [city, setCity] = useState('');
-    const { location, setLocation } = useContext(LocationContext);
 
-    useEffect(() => {
-        setLocation(city);
-    }, [city])
 
     const zomatoRequest = axios.create({
         baseURL: 'https://developers.zomato.com/api/v2.1',
@@ -117,10 +114,10 @@ function SearchFilter() {
         <section className='Search-Filter'>
             <section>
                 <h3>Filters</h3>
-                {/* <div className='Toggle'>
+                <div className='Toggle'>
                     <div className='Toggle-button' onClick={() => setShowAdvanced(!showAdvanced)}>
                     </div>
-                </div> */}
+                </div>
             </section>
             <SearchFilterSection 
                 title={'Location'} children={
@@ -164,7 +161,7 @@ function SearchFilter() {
                     'Diner', 'Lounge', 'Wine Bar', 'Pub', 'Coffee Shop', 'Dessert Parlour', 'Club', 
                     'Bistro', 'Fast Casual', 'Brewery', 'Juice Bar', 'Food Court', 'Taqueria', 'Noddle Shop',
                     'Beer Garden', 'Steakhouse', 'Cocktail Bar', 'Beverage Shop', 'Sweet Shop', 'Food Truck',
-                    'Izakaya', 'Microbrewery', 'Vineyard', 'Shack']} type={'checkbox'}
+                    'Izakaya', 'Microbrewery', 'Vineyard', 'Shack']} type={'radio'}
                 />
             </section> : null }
             <button className='SF-submit'>Apply Filters</button>

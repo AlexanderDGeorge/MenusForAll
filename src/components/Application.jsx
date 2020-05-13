@@ -6,17 +6,31 @@ import { LogIn, SignUp } from './Authentication';
 import { auth } from '../firebase';
 
 export const UserContext = createContext(null);
-export const LocationContext = createContext(null);
-export const SearchParamsContext = createContext(null);
+export const SearchParamsContext = createContext({
+    lat: null,          //latitude
+    lon: null,          //longitude
+    radius: 10000,      //distance around lat/lon in meters
+    cuisines: [],       //array of ids
+    categories: [],     //array of ids
+    establishment: '',  //single id
+    q: '',              //keyword in search bar input
+    sort: 'cost',       //cost, rating, or real_distance
+    order: 'asc'        //asc or desc
+});
 
 export default function Application() {
 
     const [user, setUser] = useState(null);
-    const [location, setLocation] = useState(null);
     const [searchParams, setSearchParams] = useState({
-        lat: null,
-        lon: null,
-        
+        lat: null,          //latitude
+        lon: null,          //longitude
+        radius: 10000,      //distance around lat/lon in meters
+        cuisines: [],       //array of ids
+        categories: [],     //array of ids
+        establishment: '',  //single id
+        q: '',              //keyword in search bar input
+        sort: 'cost',       //cost, rating, or real_distance
+        order: 'asc'        //asc or desc
     });
 
     useEffect(() => {
@@ -24,20 +38,19 @@ export default function Application() {
     }, [])
 
     window.user = user;
+    window.searchParams = searchParams;
 
     return (
         <main className='Application'>
             <HashRouter>
                 <Switch>
                     <UserContext.Provider value={{ user, setUser }}>
-                    <LocationContext.Provider value={{ location, setLocation }}>
                     <SearchParamsContext.Provider value={{ searchParams, setSearchParams }}>
                         <Route path='/login' component={LogIn}/>
                         <Route path='/signup' component={SignUp}/>
                         <Route path='/search' component={Search} />
                         <Route exact path='/' component={Landing}/>
                     </SearchParamsContext.Provider>
-                    </LocationContext.Provider>
                     </UserContext.Provider>
                 </Switch>
             </HashRouter>

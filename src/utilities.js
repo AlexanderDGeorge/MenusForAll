@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const collectIdsAndData = doc => ({ id: doc.id, ...doc.data() });
 
 export const createUserDocument = async (user, additionalData) => {

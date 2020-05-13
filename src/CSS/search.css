@@ -147,7 +147,7 @@
     align-items: center;
 }
 
-.Search-Header div {
+.SH-Auth {
     min-width: 150px;
     display: flex;
     justify-content: space-between;

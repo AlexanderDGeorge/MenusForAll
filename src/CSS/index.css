@@ -187,7 +187,7 @@
     height: 70%;
     width: 100%;
     background-color: var(--light);
-    background-image: url(assets/dinner.jpg);
+    background-image: url(../assets/dinner.jpg);
     background-position: 50%;
     background-size: cover;
     display: flex;
@@ -236,6 +236,7 @@
     align-items: center;
     background-color: var(--dark);
     border-radius: var(--border-radius);
+    color: white;
 }
 
 .User img {

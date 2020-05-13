@@ -16,7 +16,7 @@
     --light: #dddddd;
     --blue: #0073bb;
     --border-radius: 6px;
-    --box-shadow: 5px 5px 20px 0;
+    --box-shadow: 5px 5px 20px -5px;
 }
 
 .Application {
@@ -107,7 +107,7 @@
 
 .Credits {
     width: 100%;
-    background: var(--green);
+    background: linear-gradient(120deg, var(--green), var(--lightgreen));
     box-sizing: border-box;
     padding: 20px;
     display: flex;
@@ -145,7 +145,7 @@
     justify-content: space-evenly;
     align-items: center;
     color: var(--green);
-    background-color: var(--light);
+    background-color: #eeeeee;
 }
 
 .Landing-Categories div {
@@ -193,65 +193,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.Landing-Search form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.Landing-Search-Locate {
-    position: absolute;
-    right: 50px;
-    color: var(--dark) !important;
-}
-
-.Landing-Search-Locate:hover {
-    color: red !important;
-}
-
-.Landing-Search input {
-    background-color: white;
-    padding: 10px;
-    margin: 5px;
-    font-size: 18px;
-    min-width: 300px;
-    width: 400px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
-.Landing-Search button {
-    border-radius: var(--border-radius);
-    background-color: var(--green);
-    transition: linear 0.3s;
-    height: 40px;
-    width: 40px;
-    box-shadow: var(--box-shadow);
-}
-
-.Landing-Search button:hover {
-    background-color: var(--lightgreen);
-    transition: linear 0.3s;
-}
-
-.Landing-Search svg {
-    height: 30px;
-    width: auto;
-    padding: 5px;
-    color: white;
-}
-
-.Landing-Search a {
-    color: white;
-    text-decoration: none;
-    margin: 5px;
-}
-
-.Landing-Search a:hover {
-    text-decoration: underline;
 }
 
 .NavBar {

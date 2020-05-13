@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import NavBar from './NavBar';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import { LocationContext } from './Application';
+import { MdSearch, MdLocationSearching } from 'react-icons/md';
+import axios from 'axios';
 
 export default function Search(props) {
 
@@ -10,9 +12,75 @@ export default function Search(props) {
 
     return (
         <section className='Search'>
-            {/* <NavBar /> */}
+            <SearchHeader />
             <SearchResults />
             <SearchFilter />
+        </section>
+    )
+}
+
+function SearchHeader() {
+    return (
+        <section className='Search-Header'>
+            <SearchBar />
+        </section>
+    )
+}
+
+export function SearchBar() {
+    const [keyword, setKeyword] = useState('');
+    const [city, setCity] = useState('');
+    const { location, setLocation } = useContext(LocationContext);
+
+    useEffect(() => {
+        setLocation(city);
+    }, [city])
+
+    const zomatoRequest = axios.create({
+        baseURL: 'https://developers.zomato.com/api/v2.1',
+        headers: {
+            'user-key': process.env.REACT_APP_ZOMATO_KEY
+        }
+    })
+
+    async function getLocation() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(async function handle(position){
+                let lat = position.coords.latitude;
+                let lon = position.coords.longitude;
+                console.log(lat, lon);
+                const response = await zomatoRequest.get(`/cities?lat=${lat}&lon=${lon}`);
+                window.response = response;
+                setCity(response.data.location_suggestions[0].name);
+            })
+        } else {
+            console.log('no geolocation')
+        }
+    }
+
+    return (
+        <section className='Search-Bar'>
+            <form>
+                <input 
+                    type="text"
+                    value={keyword}
+                    onChange={e => setKeyword(e.target.value)}
+                    placeholder='Italian, Cafés, Burritos...'
+                    required
+                />
+                <input 
+                    type="text"
+                    value={city}
+                    onChange={e => setCity(e.target.value)}
+                    placeholder='Seattle, WA'
+                    required
+                />
+                <MdLocationSearching className='Search-Bar-Locate' onClick={getLocation}/>
+                <button>
+                    <MdSearch />
+                </button>
+            </form>
+            <Link to='search'>Advanced Search</Link>
         </section>
     )
 }
@@ -30,22 +98,43 @@ function SearchResults() {
 function SearchFilter() {
 
     const [showAdvanced, setShowAdvanced] = useState(false);
+    const [radius, setRadius] = useState(10);
 
 
     return (
         <section className='Search-Filter'>
-            <section className='Search-Filter-Section'>
-
+            <section>
+                <h3>Filters</h3>
+                {/* <div className='Toggle'>
+                    <div className='Toggle-button' onClick={() => setShowAdvanced(!showAdvanced)}>
+                    </div>
+                </div> */}
             </section>
+            <SearchFilterSection 
+                title={'Location'} children={
+                    <form>
 
+                    </form>
+                }
+            />
+            <SearchFilterSection 
+                title={'Distance'} children={
+                    <form>
+                        
+                        <input type="range" min='1' max='50'
+                            onChange={e => setRadius(e.target.value)}
+                            value={radius}
+                            style={{ width: 150 }}
+                        />
+                        {radius}
+                    </form>
+                }
+            />
             <SearchFilterSection 
                 title={'Category'} optionsArray={['Delivery', 'Dine-out', 
                 'Nightlife', 'Cafes', 'Breakfast', 'Lunch', 'Dinner', 'Bars', 
                 'Clubs']} type={'checkbox'}
             />
-            <button onClick={() => setShowAdvanced(!showAdvanced)} className='SF-advanced'>
-                {showAdvanced ? 'hide advanced filters' : 'show advanced filters'}
-            </button>
             {showAdvanced ? <section style={{ width: '100%' }}>
                 <SearchFilterSection
                     title={'Cuisine'} optionsArray={['American', 'Asian', 'BBQ', 'Bakery',
@@ -71,17 +160,17 @@ function SearchFilter() {
     )
 }
 
-function SearchFilterSection({ title, optionsArray, type }) {
+function SearchFilterSection({ title, optionsArray, children, type }) {
 
     return (
         <section className='Search-Filter-Section'>
             <h4>{title}</h4>
-            {optionsArray.map((option, i) => 
-                <div>
-                    <input type={type} name={option} key={i}/>
+            {optionsArray ? optionsArray.map((option, i) => 
+                <div key={i}>
+                    <input type={type}/>
                     {option}
                 </div>
-            )}
+            ) : children}
         </section>
     )
 }

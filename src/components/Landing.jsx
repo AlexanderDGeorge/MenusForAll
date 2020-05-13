@@ -1,10 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
-import { LocationContext } from './Application';
-import { MdSearch, MdLocationSearching, MdLocalCafe, MdLocalBar, MdLocalDining, MdLocalPizza, MdAirplanemodeActive } from 'react-icons/md';
+import { MdLocalCafe, MdLocalBar, MdLocalDining, MdLocalPizza, MdAirplanemodeActive } from 'react-icons/md';
 import { FaLink, FaGithub, FaLinkedinIn, FaHamburger, FaFish, FaLeaf } from 'react-icons/fa';
-import axios from 'axios';
+import { SearchBar } from './Search';
 
 export default function Landing() {
 
@@ -19,59 +18,9 @@ export default function Landing() {
 }
 
 function Search () {
-    const [keyword, setKeyword] = useState('');
-    const [city, setCity] = useState('');
-    const { location, setLocation } = useContext(LocationContext);
-
-    useEffect(() => {
-        setLocation(city);
-    }, [city])
-
-    const zomatoRequest = axios.create({
-        baseURL: 'https://developers.zomato.com/api/v2.1',
-        headers: {
-            'user-key': process.env.REACT_APP_ZOMATO_KEY
-        }
-    })
-
-    async function getLocation() {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(async function handle(position){
-                let lat = position.coords.latitude;
-                let lon = position.coords.longitude;
-                console.log(lat, lon);
-                const response = await zomatoRequest.get(`/cities?lat=${lat}&lon=${lon}`);
-                window.response = response;
-                setCity(response.data.location_suggestions[0].name);
-            })
-        } else {
-            console.log('no geolocation')
-        }
-    }
-
     return (
         <section className='Landing-Search'>
-            <form>
-                <input 
-                    type="text"
-                    value={keyword}
-                    onChange={e => setKeyword(e.target.value)}
-                    placeholder='Italian, Cafés, Burritos...'
-                    required
-                />
-                <input 
-                    type="text"
-                    value={city}
-                    onChange={e => setCity(e.target.value)}
-                    placeholder='Seattle, WA'
-                    required
-                />
-                <MdLocationSearching className='Landing-Search-Locate' onClick={getLocation}/>
-                <button>
-                    <MdSearch />
-                </button>
-            </form>
-            <Link to='search'>Advanced Search</Link>
+            <SearchBar />
         </section>
     )
 }

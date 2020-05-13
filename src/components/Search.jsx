@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { LocationContext } from './Application';
+import { LocationContext, UserContext } from './Application';
 import { MdSearch, MdLocationSearching } from 'react-icons/md';
 import axios from 'axios';
+import User from './User';
 
 export default function Search(props) {
 
@@ -13,16 +14,27 @@ export default function Search(props) {
     return (
         <section className='Search'>
             <SearchHeader />
-            <SearchResults />
             <SearchFilter />
+            <SearchResults />
         </section>
     )
 }
 
 function SearchHeader() {
+
+    const { user } = useContext(UserContext);
+
     return (
         <section className='Search-Header'>
+            <Link to='/'>Home</Link>
             <SearchBar />
+            {user ? 
+                <User /> :
+                <div>
+                    <Link to='/login'>Log In</Link>
+                    <Link to='/signup'>Sign Up</Link>
+                </div>
+            }
         </section>
     )
 }
@@ -80,7 +92,7 @@ export function SearchBar() {
                     <MdSearch />
                 </button>
             </form>
-            <Link to='search'>Advanced Search</Link>
+            {/* <Link to='search'>Advanced Search</Link> */}
         </section>
     )
 }

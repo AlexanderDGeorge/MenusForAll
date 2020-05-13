@@ -24,7 +24,7 @@ export default function NavBar() {
         <header className='NavBar' style={{ backgroundColor: scroll }}>
             <ul>
                 <NavItem name={'Home'} path={'/'}/>
-                <NavItem name={'Menus'} path={'/menus'}/>
+                <NavItem name={'Search'} path={'/search'}/>
             </ul>
 
             {user ? 

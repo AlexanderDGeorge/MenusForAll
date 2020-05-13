@@ -3,7 +3,7 @@
     width: 100vw;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 30% auto;
+    grid-template-columns: 25% auto;
     grid-template-rows: 100px auto;
     grid-template-areas: 
         "header header"
@@ -44,7 +44,6 @@
     margin: 5px;
     font-size: 18px;
     min-width: 300px;
-    width: 400px;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 }
@@ -82,7 +81,7 @@
 
 .Search-Filter {
     grid-area: filter;
-    min-width: 300px;
+    min-width: 200px;
     position: relative;
     background-color: white;
     display: flex;
@@ -130,7 +129,7 @@
     position: fixed;
     bottom: 0;
     height: 40px;
-    width: 300px;
+    width: 200px;
     background-color: var(--green);
     color: white;
     font-size: 16px;
@@ -148,9 +147,27 @@
     align-items: center;
 }
 
+.Search-Header div {
+    min-width: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Search-Header a {
+    text-decoration: none;
+    color: var(--dark);
+    padding: 10px 0;
+}
+
+.Search-Header a:hover {
+    border-bottom: 2px solid var(--dark);
+}
+
 
 .Search-Results {
     grid-area: results;
+    overflow-y: scroll;
 }
 
 .Toggle {

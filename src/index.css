@@ -169,6 +169,7 @@
     color: black;
     border-radius: var(--border-radius);
     border: 1px solid var(--light);
+    text-decoration: none;
 }
 
 .Landing-Categories-Card:hover {
@@ -228,6 +229,7 @@
 }
 
 .User {
+    min-width: auto !important;
     position: relative;
     height: 50px;
     display: flex;

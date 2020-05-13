@@ -169,20 +169,3 @@
     grid-area: results;
     overflow-y: scroll;
 }
-
-.Toggle {
-    position: relative;
-    height: 20px;
-    width: 50px;
-    border: 1px solid var(--dark);
-    border-radius: 20px;
-}
-
-.Toggle-button {
-    position: absolute;
-    height: 18px;
-    width: 18px;
-    border: 1px solid var(--dark);
-    border-radius: 50%;
-    left: 2px;
-}

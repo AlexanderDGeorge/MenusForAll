@@ -4,6 +4,7 @@ import { UserContext, SearchParamsContext } from './Application';
 import { MdSearch, MdLocationSearching } from 'react-icons/md';
 import axios from 'axios';
 import User from './User';
+import { Toggle } from './Components';
 
 export default function Search(props) {
 
@@ -109,15 +110,11 @@ function SearchFilter() {
     const [showAdvanced, setShowAdvanced] = useState(false);
     const [radius, setRadius] = useState(10);
 
-
     return (
         <section className='Search-Filter'>
             <section>
                 <h3>Filters</h3>
-                <div className='Toggle'>
-                    <div className='Toggle-button' onClick={() => setShowAdvanced(!showAdvanced)}>
-                    </div>
-                </div>
+                <Toggle toggle={showAdvanced} setToggle={setShowAdvanced} size={20}/>
             </section>
             <SearchFilterSection 
                 title={'Location'} children={

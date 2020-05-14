@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Toggle } from '../Components';
+import { SearchParamsContext } from '../Application';
 
 const categories = {
-    'Delivery': 1, 'Dine-out': 2, 'Nightlife': 3, 'Take-out': 5, 'Cafes': 6, 
-    'Breakfast': 8, 'Lunch': 9, 'Dinner': 10, 'Bars': 11, 'Clubs': 14
+    'Delivery': 1, 'Dine-in': 2, 'Take-out': 5, 'Cafes': 6, 'Breakfast': 8,
+    'Lunch': 9, 'Dinner': 10, 'Bars': 11, 'Clubs': 14, 'Nightlife': 3
 }
 
 const cuisines = {
@@ -35,7 +36,6 @@ const establishments = {
 export default function SearchFilter() {
 
     const [showAdvanced, setShowAdvanced] = useState(false);
-    const [radius, setRadius] = useState(10);
 
     return (
         <section className='Search-Filter'>
@@ -45,30 +45,7 @@ export default function SearchFilter() {
                     Advanced Filters
                     <Toggle toggle={showAdvanced} setToggle={setShowAdvanced} size={25}/>
                 </div>
-                <div className='SF-toggleArea'>
-
-                </div>
             </section>
-            <SearchFilterSection 
-                title={'Location'} children={
-                    <form>
-
-                    </form>
-                }
-            />
-            <SearchFilterSection 
-                title={'Distance'} children={
-                    <form>
-                        
-                        <input type="range" min='1' max='50'
-                            onChange={e => setRadius(e.target.value)}
-                            value={radius}
-                            style={{ width: 150 }}
-                        />
-                        {radius}
-                    </form>
-                }
-            />
             <SearchFilterSection 
                 title={'Category'} options={categories} type={'checkbox'}
             />
@@ -85,17 +62,34 @@ export default function SearchFilter() {
     )
 }
 
-function SearchFilterSection({ title, options, children, type }) {
+function SearchFilterSection({ title, options, type }) {
+
+    const { setCategories, setCuisines, setEstablishment } = useContext(SearchParamsContext);
+    const [selected] = useState([]);
+
+    function handleChange(e) {
+        if (type === 'radio') {
+            setEstablishment(e.target.value);
+        } else {
+            let index = selected.indexOf(e.target.value);
+            index === -1 ? selected.push(e.target.value) : selected.splice(index, 1);
+            title === 'Category' ? setCategories(selected) : setCuisines(selected);
+        }
+    }
+
 
     return (
         <section className='Search-Filter-Section'>
             <h4>{title}</h4>
-            {options ? Object.keys(options).map((option, i) => 
+            {Object.keys(options).map((option, i) => 
                 <div key={i}>
-                    <input type={type}/>
-                    {option}
+                    <input 
+                        type={type} id={`${option}${i}`} name={title} 
+                        value={options[option]} onChange={handleChange}
+                    />
+                    <label htmlFor={`${option}${i}`}>{option}</label>
                 </div>
-            ) : children}
+            )}
         </section>
     )
 }

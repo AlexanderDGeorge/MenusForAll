@@ -103,6 +103,7 @@
     padding: 40px 10px;
     overflow-y: scroll;
     border-right: 1px solid var(--light);
+    color: var(--dark);
 }
 
 .Search-Filter-Section {

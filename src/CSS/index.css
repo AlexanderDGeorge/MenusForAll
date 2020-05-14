@@ -232,7 +232,7 @@
 .User {
     min-width: auto !important;
     position: relative;
-    height: 50px;
+    height: 63px;
     display: flex;
     align-items: center;
     background-color: var(--dark);

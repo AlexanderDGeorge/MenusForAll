@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext, SearchParamsContext } from '../Application';
 import { MdSearch, MdLocationSearching } from 'react-icons/md';
-import axios from 'axios';
+import { zomatoRequest } from '../../utilities';
 import User from '../User';
 import SearchFilter from './SearchFilter';
 import SearchResults from './SearchResults';
@@ -39,16 +39,13 @@ function SearchHeader() {
 
 export function SearchBar() {
     
-    const [city, setCity] = useState('');
-    const { query, setQuery, setLat, setLon } = useContext(SearchParamsContext);
+    const { lat, setLat, lon, setLon, city, setCity, cityID, setCityID,
+            radius, cuisines, categories, establishment, query, setQuery,
+            sort, order
+    } = useContext(SearchParamsContext);
+    const [newCity, setNewCity] = useState('');
 
-    const zomatoRequest = axios.create({
-        baseURL: 'https://developers.zomato.com/api/v2.1',
-        headers: {
-            'user-key': process.env.REACT_APP_ZOMATO_KEY
-        }
-    })
-
+    
     async function getLocation() {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async function handle(position){
@@ -58,7 +55,6 @@ export function SearchBar() {
                 setLon(lon);
                 console.log(lat, lon);
                 const response = await zomatoRequest.get(`/cities?lat=${lat}&lon=${lon}`);
-                window.response = response;
                 setCity(response.data.location_suggestions[0].name);
             })
         } else {
@@ -66,7 +62,44 @@ export function SearchBar() {
         }
     }
 
-    function handleClick() {
+    async function handleClick() {
+        if (city !== newCity) {
+            setCity(newCity);
+            const response = await zomatoRequest.get(`/cities?q=${city}&count=1`);
+            setCityID(response.data.location_suggestions[0].id);
+        }
+        handleSearch();
+    }
+
+    async function handleSearch() {
+    
+        let searchString = `/search?
+            ${lat ? `lat=${lat}` : `entity_id=${cityID}&entity_type=city`}&
+            ${lon ? `lon=${lon}&` : ''}
+            ${radius ? `radius=${radius}&` : ''}
+            ${cuisines ? `cuisines=${cuisines.forEach((num, i) => {
+                if (i === cuisines.length) return num
+                else return `${num},`
+            })}&` : ''}
+            ${categories ? `category=${categories.forEach((num, i) => {
+                if (i === categories.length) return num
+                else return `${num},`
+            })}&` : ''}
+            ${establishment ? `establishment_type=${establishment}&` : ''}
+            ${query ? `q=${query}&` : ''}
+            sort=${sort}&
+            order=${order}
+        `;
+        
+        // delete whitespace from string
+        searchString = searchString.replace(/\s/g, '');
+    
+        window.searchString = searchString;
+        console.log(searchString);
+
+        const response = await zomatoRequest.get(searchString);
+        console.log(response);
+        window.response = response;
 
     }
 
@@ -82,8 +115,8 @@ export function SearchBar() {
                 <div></div>
                 <input 
                     type="text"
-                    value={city}
-                    onChange={e => setCity(e.target.value)}
+                    value={newCity}
+                    onChange={e => setNewCity(e.target.value)}
                     placeholder='Seattle, WA'
                 />
                 <MdLocationSearching className='Search-Bar-Locate' onClick={getLocation}/>

@@ -7,23 +7,27 @@ import { auth } from '../firebase';
 
 export const UserContext = createContext(null);
 export const SearchParamsContext = createContext({
-    lat: 47.6062,       //latitude
+    lat: null,              //latitude
     setLat: () => {},
-    lon: -122.3321,     //longitude
+    lon: null,              //longitude
     setLon: () => {},
-    radius: 10000,      //distance around lat/lon in meters
+    city: 'Seattle, WA',    //city
+    setCity: () => {},
+    cityID: '279',          //entity_id; entity_type muse equal city
+    setCityID: () => {},
+    radius: 10000,          //distance around lat/lon in meters
     setRadius: () => {},
-    cuisines: [],       //array of ids
+    cuisines: [],           //array of ids
     setCuisines: () => {},
-    categories: [],     //array of ids
+    categories: [],         //array of ids
     setCategories: () => {},
-    establishment: '',  //single id
-    setEstablisment: () => {},
-    query: '',          //keyword in search bar input
+    establishment: '',      //single id
+    setEstablishment: () => {},
+    query: '',              //keyword in search bar input
     setQuery: () => {},
-    sort: 'rating',     //cost, rating, or real_distance
+    sort: 'rating',         //cost, rating, or real_distance
     setSort: () => {},
-    order: 'asc',       //asc or desc
+    order: 'desc',          //asc or desc
     setOrder: () => {}
 });
 
@@ -31,19 +35,21 @@ export default function Application() {
 
     const [user, setUser] = useState(null);
 
-    const [lat, setLat] = useState(47.6062);
-    const [lon, setLon] = useState(-122.3321);
-    const [radius, setRadius] = useState(10000);
+    const [lat, setLat] = useState(null);
+    const [lon, setLon] = useState(null);
+    const [city, setCity] = useState('Seattle, WA');
+    const [cityID, setCityID] = useState(279);
+    const [radius, setRadius] = useState(null);
     const [cuisines, setCuisines] = useState(null);
     const [categories, setCategories] = useState(null);
-    const [establishment, setEstablisment] = useState(null);
+    const [establishment, setEstablishment] = useState(null);
     const [query, setQuery] = useState('');
     const [sort, setSort] = useState('rating');
-    const [order, setOrder] = useState('asc');
+    const [order, setOrder] = useState('desc');
     const value = { 
-        lat, setLat, lon, setLon, radius, setRadius, 
-        cuisines, setCuisines, categories, setCategories, 
-        establishment, setEstablisment, query, setQuery, 
+        lat, setLat, lon, setLon, city, setCity, cityID, setCityID,
+        radius, setRadius, cuisines, setCuisines, categories, setCategories, 
+        establishment, setEstablishment, query, setQuery, 
         sort, setSort, order, setOrder
     }
 
@@ -51,6 +57,7 @@ export default function Application() {
         auth.onAuthStateChanged(user => setUser(user));
     }, [])
 
+    window.value = value;
     window.user = user;
 
     return (

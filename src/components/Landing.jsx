@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 import { MdLocalCafe, MdLocalBar, MdLocalDining, MdLocalPizza, MdAirplanemodeActive } from 'react-icons/md';
 import { FaLink, FaGithub, FaLinkedinIn, FaHamburger, FaFish, FaLeaf } from 'react-icons/fa';
-import { SearchBar } from './Search';
+import { SearchBar } from './Search/Search';
 
 export default function Landing() {
 

@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import Landing from './Landing';
-import Search from './Search';
+import Search from './Search/Search';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { LogIn, SignUp } from './Authentication';
 import { auth } from '../firebase';
@@ -37,7 +37,7 @@ export default function Application() {
     const [cuisines, setCuisines] = useState(null);
     const [categories, setCategories] = useState(null);
     const [establishment, setEstablisment] = useState(null);
-    const [query, setQuery] = useState(null);
+    const [query, setQuery] = useState('');
     const [sort, setSort] = useState('rating');
     const [order, setOrder] = useState('asc');
     const value = { 

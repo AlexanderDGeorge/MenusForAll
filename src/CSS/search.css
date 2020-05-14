@@ -26,6 +26,21 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    padding: 5px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--light);
+    transition: var(--transition);
+    background-color: white;
+}
+
+.Search-Bar form:hover {
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+.Search-Bar div {
+    height: 45px;
+    border-left: 1px solid var(--light);
 }
 
 .Search-Bar-Locate {
@@ -44,22 +59,20 @@
     margin: 5px;
     font-size: 18px;
     min-width: 300px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
 }
 
 .Search-Bar button {
     border-radius: var(--border-radius);
     background-color: var(--green);
-    transition: linear 0.3s;
+    transition: var(--transition);
     height: 40px;
     width: 40px;
-    box-shadow: var(--box-shadow);
 }
 
 .Search-Bar button:hover {
+    box-shadow: var(--box-shadow);
     background-color: var(--lightgreen);
-    transition: linear 0.3s;
+    transition: var(--transition);
 }
 
 .Search-Bar svg {

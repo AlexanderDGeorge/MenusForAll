@@ -41,7 +41,6 @@ export function SearchBar() {
     const [keyword, setKeyword] = useState('');
     const [city, setCity] = useState('');
 
-
     const zomatoRequest = axios.create({
         baseURL: 'https://developers.zomato.com/api/v2.1',
         headers: {
@@ -77,6 +76,7 @@ export function SearchBar() {
                     onChange={e => setKeyword(e.target.value)}
                     placeholder='Italian, Cafés, Burritos...'
                 />
+                <div></div>
                 <input 
                     type="text"
                     value={city}

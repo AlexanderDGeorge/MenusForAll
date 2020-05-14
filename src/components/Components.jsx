@@ -22,3 +22,14 @@ export function Toggle({ toggle, setToggle, size = 30 }) {
         </animated.div>
     )
 }
+
+export function Message({ message }) {
+
+    
+
+    return ( 
+        <animated.div>
+
+        </animated.div>
+    )
+}

@@ -6,11 +6,7 @@ import axios from 'axios';
 import User from './User';
 import { Toggle } from './Components';
 
-export default function Search(props) {
-
-    const { searchParams, setSearchParams } = useContext(SearchParamsContext);
-    console.log(searchParams);
-
+export default function Search() {
 
     return (
         <section className='Search'>
@@ -68,6 +64,10 @@ export function SearchBar() {
         }
     }
 
+    function handleClick() {
+
+    }
+
     return (
         <section className='Search-Bar'>
             <form>
@@ -76,31 +76,19 @@ export function SearchBar() {
                     value={keyword}
                     onChange={e => setKeyword(e.target.value)}
                     placeholder='Italian, Cafés, Burritos...'
-                    required
                 />
                 <input 
                     type="text"
                     value={city}
                     onChange={e => setCity(e.target.value)}
                     placeholder='Seattle, WA'
-                    required
                 />
                 <MdLocationSearching className='Search-Bar-Locate' onClick={getLocation}/>
-                <button>
+                <button onClick={handleClick}>
                     <MdSearch />
                 </button>
             </form>
             {/* <Link to='search'>Advanced Search</Link> */}
-        </section>
-    )
-}
-
-function SearchResults() {
-
-
-    return (
-        <section className='Search-Results'>
-
         </section>
     )
 }
@@ -114,7 +102,13 @@ function SearchFilter() {
         <section className='Search-Filter'>
             <section>
                 <h3>Filters</h3>
-                <Toggle toggle={showAdvanced} setToggle={setShowAdvanced} size={20}/>
+                <div className='SF-toggleArea'>
+                    Advanced Filters
+                    <Toggle toggle={showAdvanced} setToggle={setShowAdvanced} size={25}/>
+                </div>
+                <div className='SF-toggleArea'>
+
+                </div>
             </section>
             <SearchFilterSection 
                 title={'Location'} children={
@@ -177,6 +171,16 @@ function SearchFilterSection({ title, optionsArray, children, type }) {
                     {option}
                 </div>
             ) : children}
+        </section>
+    )
+}
+
+function SearchResults() {
+
+
+    return (
+        <section className='Search-Results'>
+
         </section>
     )
 }

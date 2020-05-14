@@ -16,7 +16,7 @@
     --light: #dddddd;
     --blue: #0073bb;
     --border-radius: 6px;
-    --box-shadow: 5px 5px 20px -5px;
+    --box-shadow: 2px 2px 10px -4px;
 }
 
 .Application {
@@ -166,7 +166,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    color: black;
+    color: var(--dark);
     border-radius: var(--border-radius);
     border: 1px solid var(--light);
     text-decoration: none;

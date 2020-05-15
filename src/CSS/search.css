@@ -208,7 +208,7 @@
     grid-template-areas: 
         'img . name . info'
         'img . cost . info'
-        'img . cuisines . info'
+        'img . cuisines . label'
         'img . tags . rating'
     ;
 }
@@ -236,6 +236,8 @@
     grid-area: name;
     color: black;
     font-size: 22px;
+    display: flex;
+    align-items: center;
 }
 
 .SR-info {
@@ -257,14 +259,31 @@
 
 .SR-cost {
     grid-area: cost;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
 }
 
 .SR-cuisines {
     grid-area: cuisines;
+    display: flex;
+    align-items: center;
 }
 
 .SR-tags {
     grid-area: tags;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #aaaaaa;
+}
+
+.SR-label {
+    grid-area: label;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 12px;
 }
 
 .Empty-Results {

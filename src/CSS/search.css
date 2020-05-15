@@ -186,7 +186,13 @@
 }
 
 
+
 .Search-Results {
     grid-area: results;
     overflow-y: scroll;
+}
+
+.Empty-Results {
+    grid-area: results;
+    
 }

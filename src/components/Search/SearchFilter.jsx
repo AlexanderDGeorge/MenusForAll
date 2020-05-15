@@ -1,13 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { Toggle } from '../Components';
-import { SearchParamsContext } from '../Application';
+import { SearchParamsContext, ResultsContext } from '../Application';
+import { zomatoRequest } from '../../utilities';
 
-const categories = {
+
+const CATEGORIES = {
     'Delivery': 1, 'Dine-in': 2, 'Take-out': 5, 'Cafes': 6, 'Breakfast': 8,
     'Lunch': 9, 'Dinner': 10, 'Bars': 11, 'Clubs': 14, 'Nightlife': 3
 }
 
-const cuisines = {
+const CUISINES = {
     'American': 1, 'Asian': 3, 'BBQ': 193, 'Bagels': 955,
     'Beverages': 270, 'Bubble Tea': 247, 'Burgers': 168, 'Cajun': 491, 
     'Chili': 971, 'Chinese': 25, 'Coffee/Tea': 161, 'Desserts': 100, 
@@ -22,7 +24,7 @@ const cuisines = {
     'Tex-Mex': 150, 'Thai': 95, 'Vegetarian': 308, 'Vietnamese': 99
 }
 
-const establishments = {
+const ESTABLISHMENTS = {
     'Quick Bites': 21, 'Sandwich Shop': 271, 'Cafe': 1, 'Fast Food': 281, 
     'Bar': 7, 'Casual Dining': 16, 'Deli': 24, 'Bakery': 31, 'Fine Dining': 18, 
     'Pizzeria': 275, 'Diner': 101, 'Lounge': 5, 'Wine Bar': 278, 'Pub': 6, 
@@ -36,6 +38,37 @@ const establishments = {
 export default function SearchFilter() {
 
     const [showAdvanced, setShowAdvanced] = useState(false);
+    const { setResults } = useContext(ResultsContext);
+    const { lat, lon, cityID, radius, cuisines, categories, 
+        establishment, query, sort, order
+    } = useContext(SearchParamsContext);
+
+    async function handleSearch() {
+    
+        let searchString = `/search?
+            ${lat ? `lat=${lat}` : `entity_id=${cityID}&entity_type=city`}&
+            ${lon ? `lon=${lon}&` : ''}
+            ${radius ? `radius=${radius}&` : ''}
+            ${cuisines ? `cuisines=${cuisines.forEach((num, i) => {
+                if (i === cuisines.length) return num
+                else return `${num},`
+            })}&` : ''}
+            ${categories ? `category=${categories.forEach((num, i) => {
+                if (i === categories.length) return num
+                else return `${num},`
+            })}&` : ''}
+            ${establishment ? `establishment_type=${establishment}&` : ''}
+            ${query ? `q=${query}&` : ''}
+            sort=${sort}&
+            order=${order}
+        `;
+        
+        // delete whitespace from string
+        searchString = searchString.replace(/\s/g, '');
+
+        const response = await zomatoRequest.get(searchString);
+        setResults(response);
+    }
 
     return (
         <section className='Search-Filter'>
@@ -47,17 +80,17 @@ export default function SearchFilter() {
                 </div>
             </section>
             <SearchFilterSection 
-                title={'Category'} options={categories} type={'checkbox'}
+                title={'Category'} options={CATEGORIES} type={'checkbox'}
             />
             {showAdvanced ? <section style={{ width: '100%' }}>
                 <SearchFilterSection
-                    title={'Cuisine'} options={cuisines} type={'checkbox'}
+                    title={'Cuisine'} options={CUISINES} type={'checkbox'}
                 />
                 <SearchFilterSection 
-                    title={'Establishment'} options={establishments} type={'radio'}
+                    title={'Establishment'} options={ESTABLISHMENTS} type={'radio'}
                 />
             </section> : null }
-            <button className='SF-submit'>Apply Filters</button>
+            <button className='SF-submit' onClick={handleSearch}>Apply Filters</button>
         </section>
     )
 }

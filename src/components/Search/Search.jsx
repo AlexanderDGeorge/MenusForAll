@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext, SearchParamsContext } from '../Application';
+import { UserContext, SearchParamsContext, ResultsContext } from '../Application';
 import { MdSearch, MdLocationSearching } from 'react-icons/md';
 import { zomatoRequest } from '../../utilities';
 import User from '../User';
@@ -39,11 +39,13 @@ function SearchHeader() {
 
 export function SearchBar() {
     
+    const [newCity, setNewCity] = useState('');
+
+    const { setResults } = useContext(ResultsContext);
     const { lat, setLat, lon, setLon, city, setCity, cityID, setCityID,
             radius, cuisines, categories, establishment, query, setQuery,
             sort, order
     } = useContext(SearchParamsContext);
-    const [newCity, setNewCity] = useState('');
 
     
     async function getLocation() {
@@ -93,14 +95,9 @@ export function SearchBar() {
         
         // delete whitespace from string
         searchString = searchString.replace(/\s/g, '');
-    
-        window.searchString = searchString;
-        console.log(searchString);
 
         const response = await zomatoRequest.get(searchString);
-        console.log(response);
-        window.response = response;
-
+        setResults(response);
     }
 
     return (

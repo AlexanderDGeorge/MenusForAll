@@ -6,6 +6,7 @@ import { LogIn, SignUp } from './Authentication';
 import { auth } from '../firebase';
 
 export const UserContext = createContext(null);
+export const ResultsContext = createContext(null);
 export const SearchParamsContext = createContext({
     lat: null,              //latitude
     setLat: () => {},
@@ -34,6 +35,7 @@ export const SearchParamsContext = createContext({
 export default function Application() {
 
     const [user, setUser] = useState(null);
+    const [results, setResults] = useState(null);
 
     const [lat, setLat] = useState(null);
     const [lon, setLon] = useState(null);
@@ -59,18 +61,21 @@ export default function Application() {
 
     window.value = value;
     window.user = user;
+    window.results = results;
 
     return (
         <main className='Application'>
             <HashRouter>
                 <Switch>
                     <UserContext.Provider value={{ user, setUser }}>
+                    <ResultsContext.Provider value={{ results, setResults }}>
                     <SearchParamsContext.Provider value={value}>
                         <Route path='/login' component={LogIn}/>
                         <Route path='/signup' component={SignUp}/>
                         <Route path='/search' component={Search} />
                         <Route exact path='/' component={Landing}/>
                     </SearchParamsContext.Provider>
+                    </ResultsContext.Provider>
                     </UserContext.Provider>
                 </Switch>
             </HashRouter>

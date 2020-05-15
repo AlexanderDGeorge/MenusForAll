@@ -190,9 +190,84 @@
 .Search-Results {
     grid-area: results;
     overflow-y: scroll;
+    padding: 10px;
+}
+
+.Search-Result {
+    height: 200px;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    color: var(--dark);
+    border: 1px solid var(--light);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    display: grid;
+    grid-template-columns: 250px 5px auto 5px 100px;
+    grid-template-rows: 40px 40px 40px auto;
+    grid-template-areas: 
+        'img . name . info'
+        'img . cost . info'
+        'img . cuisines . info'
+        'img . tags . rating'
+    ;
+}
+
+.Search-Result:hover {
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.SR-img {
+    grid-area: img;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SR-img img {
+    width: 100%;
+    max-height: 100%;
+    border: 1px solid var(--light);
+    border-radius: var(--border-radius);
+}
+
+.SR-name {
+    grid-area: name;
+    color: black;
+    font-size: 22px;
+}
+
+.SR-info {
+    grid-area: info;
+    font-size: 14px;
+}
+
+.SR-rating {
+    grid-area: rating;
+    border: 1px solid var(--light);
+    border-radius: var(--border-radius);
+    background-color: var(--green);
+    color: white;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SR-cost {
+    grid-area: cost;
+}
+
+.SR-cuisines {
+    grid-area: cuisines;
+}
+
+.SR-tags {
+    grid-area: tags;
 }
 
 .Empty-Results {
     grid-area: results;
-    
+
 }

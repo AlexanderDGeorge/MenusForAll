@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ResultsContext } from '../Application';
 
 export default function SearchResults() {
@@ -28,7 +28,7 @@ export default function SearchResults() {
 function SearchResult(props) {
 
     const { restaurant } = props.restaurant;
-    const [id] = useState(restaurant.id);
+    // const [id] = useState(restaurant.id);
 
     console.log(restaurant);
 

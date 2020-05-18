@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { UserContext, SearchParamsContext, ResultsContext } from '../Application';
 import { MdSearch, MdLocationSearching } from 'react-icons/md';
 import { zomatoRequest } from '../../utilities';
@@ -40,6 +40,8 @@ function SearchHeader() {
 export function SearchBar() {
     
     const [newCity, setNewCity] = useState('');
+    const location = useLocation();
+    const history = useHistory();
 
     const { setResults } = useContext(ResultsContext);
     const { lat, setLat, lon, setLon, city, setCity, cityID, setCityID,
@@ -58,6 +60,7 @@ export function SearchBar() {
                 console.log(lat, lon);
                 const response = await zomatoRequest.get(`/cities?lat=${lat}&lon=${lon}`);
                 setCity(response.data.location_suggestions[0].name);
+                setNewCity(response.data.location_suggestions[0].name);
             })
         } else {
             console.log('no geolocation')
@@ -70,6 +73,11 @@ export function SearchBar() {
             const response = await zomatoRequest.get(`/cities?q=${city}&count=1`);
             setCityID(response.data.location_suggestions[0].id);
         }
+
+        if (location.pathname !== '/search') {
+            history.push('/search');
+        }
+        
         handleSearch();
     }
 

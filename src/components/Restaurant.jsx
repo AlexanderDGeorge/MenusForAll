@@ -36,12 +36,22 @@ export default function Restaurant(props) {
 }
 
 function RestaurantDetail({ restaurant }) {
-    console.log(restaurant);
+    window.restaurant = restaurant;
+
+    function RestaurantPictures() {
+
+        return (
+            <div>
+                {restaurant.photos.map}
+            </div>
+        )
+    }
 
     return (
         <section className='Restaurant-Detail'>
-            <img src={restaurant.featured_image} alt=""/>
+            <RestaurantPictures />
             <h1>{restaurant.name}</h1>
+
         </section>
     )
 }

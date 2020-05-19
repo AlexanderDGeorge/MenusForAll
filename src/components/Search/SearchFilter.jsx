@@ -40,7 +40,7 @@ export default function SearchFilter() {
     const [showAdvanced, setShowAdvanced] = useState(false);
     const { setResults } = useContext(ResultsContext);
     const { lat, lon, cityID, radius, cuisines, categories, 
-        establishment, query, sort, order
+        establishment, query, sort, setSort, order, setOrder
     } = useContext(SearchParamsContext);
 
     async function handleSearch() {
@@ -77,6 +77,14 @@ export default function SearchFilter() {
                 <div className='SF-toggleArea'>
                     Advanced Filters
                     <Toggle toggle={showAdvanced} setToggle={setShowAdvanced} size={25}/>
+                </div>
+                <div className='SF-toggleArea'>
+                    Sort By
+                    <select onChange={e => setSort(e.target.value)}>
+                        <option value="rating" defaultValue>rating</option>
+                        <option value="cost">cost</option>
+                        <option value="real_distance">distance</option>
+                    </select>
                 </div>
             </section>
             <SearchFilterSection 

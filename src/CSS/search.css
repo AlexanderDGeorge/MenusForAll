@@ -167,6 +167,11 @@
     align-items: center;
     justify-content: space-between;
     min-width: 200px;
+    padding: 10px;
+}
+
+.SF-toggleArea select {
+    height: 30px;
 }
 
 .Search-Header {
@@ -212,6 +217,7 @@
     border: 1px solid var(--light);
     border-radius: var(--border-radius);
     transition: var(--transition);
+    text-decoration: none;
     display: grid;
     grid-template-columns: 250px 5px auto 5px 100px;
     grid-template-rows: 40px 40px 40px auto;

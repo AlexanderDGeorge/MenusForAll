@@ -60,6 +60,16 @@ export default function Application() {
         auth.onAuthStateChanged(user => setUser(user));
     }, [])
 
+    // useEffect(() => {
+    //     if (lat && lon) {
+    //         localStorage.setItem('lat', JSON.stringify(lat));
+    //         localStorage.setItem('lon', JSON.stringify(lon));
+    //     } else {
+    //         setLat(JSON.parse(localStorage.getItem('lat')));
+    //         setLon(JSON.parse(localStorage.getItem('lon')));
+    //     }
+    // }, [lat, lon])
+
     window.value = value;
     window.user = user;
     window.results = results;

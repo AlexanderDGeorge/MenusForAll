@@ -1,0 +1,7 @@
+.Restaurant {
+    display: grid;
+    grid-template-rows: 100px auto;
+    grid-template-areas: 
+        'header'
+        'body';
+}

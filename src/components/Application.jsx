@@ -4,6 +4,7 @@ import Search from './Search/Search';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { LogIn, SignUp } from './Authentication';
 import { auth } from '../firebase';
+import Restaurant from './Restaurant';
 
 export const UserContext = createContext(null);
 export const ResultsContext = createContext(null);
@@ -72,7 +73,8 @@ export default function Application() {
                     <SearchParamsContext.Provider value={value}>
                         <Route path='/login' component={LogIn}/>
                         <Route path='/signup' component={SignUp}/>
-                        <Route path='/search' component={Search} />
+                        <Route path='/search/:id' component={Restaurant}/>
+                        <Route exact path='/search' component={Search}/>
                         <Route exact path='/' component={Landing}/>
                     </SearchParamsContext.Provider>
                     </ResultsContext.Provider>

@@ -226,6 +226,7 @@
 .Search-Result:hover {
     box-shadow: var(--box-shadow);
     transition: var(--transition);
+    cursor: pointer;
 }
 
 .SR-img {
@@ -248,6 +249,11 @@
     font-size: 22px;
     display: flex;
     align-items: center;
+}
+
+.SR-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .SR-info {

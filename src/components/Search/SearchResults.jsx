@@ -1,13 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { ResultsContext } from '../Application';
+import { Link } from 'react-router-dom';
 
 export default function SearchResults() {
 
     const { results } = useContext(ResultsContext);
-
-    useEffect(() => {
-        // console.log(results);
-    }, [results])
 
     if (results) {
         const { restaurants } = results.data;
@@ -27,9 +24,7 @@ export default function SearchResults() {
 function SearchResult(props) {
 
     const { restaurant } = props.restaurant;
-    // const [id] = useState(restaurant.id);
-
-    // console.log(restaurant);
+    const [id] = useState(restaurant.id);
 
     function Cost(num) {
         return (
@@ -43,7 +38,7 @@ function SearchResult(props) {
     }
 
     return (
-        <section className='Search-Result'>
+        <Link className='Search-Result' to={{ pathname: `/search/${id}`, restaurant }}>
             <div className='SR-img'>
                 <img src={restaurant.featured_image} alt=""/>
             </div>
@@ -59,7 +54,7 @@ function SearchResult(props) {
                 <p>{restaurant.location.address}</p>
             </div>
             <p className='SR-label'> Average Rating</p>
-        </section>
+        </Link>
     )
 }
 

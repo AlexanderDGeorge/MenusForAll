@@ -18,7 +18,7 @@ export default function Search() {
     )
 }
 
-function SearchHeader() {
+export function SearchHeader() {
 
     const { user } = useContext(UserContext);
 

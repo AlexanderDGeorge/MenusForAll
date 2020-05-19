@@ -6,7 +6,7 @@ export default function SearchResults() {
     const { results } = useContext(ResultsContext);
 
     useEffect(() => {
-        console.log(results);
+        // console.log(results);
     }, [results])
 
     if (results) {
@@ -20,7 +20,6 @@ export default function SearchResults() {
             </section>
         )
     } else {
-        console.log('no results');
         return <EmptyResults />
     }
 }
@@ -30,7 +29,7 @@ function SearchResult(props) {
     const { restaurant } = props.restaurant;
     // const [id] = useState(restaurant.id);
 
-    console.log(restaurant);
+    // console.log(restaurant);
 
     function Cost(num) {
         return (

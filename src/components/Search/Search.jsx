@@ -57,7 +57,6 @@ export function SearchBar() {
                 let lon = position.coords.longitude;
                 setLat(lat);
                 setLon(lon);
-                console.log(lat, lon);
                 const response = await zomatoRequest.get(`/cities?lat=${lat}&lon=${lon}`);
                 setCity(response.data.location_suggestions[0].name);
                 setNewCity(response.data.location_suggestions[0].name);

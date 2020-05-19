@@ -10,6 +10,15 @@
         "filter results";
 }
 
+.Empty-Results {
+    grid-area: results;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark);
+    background-color: var(--light);
+}
+
 .Search h4 {
     padding: 10px 0;
 }
@@ -285,9 +294,4 @@
     justify-content: center;
     align-items: flex-end;
     font-size: 12px;
-}
-
-.Empty-Results {
-    grid-area: results;
-
 }

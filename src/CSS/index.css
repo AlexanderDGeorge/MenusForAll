@@ -119,9 +119,13 @@
 .Credits svg {
     height: 50px;
     width: auto;
-    color: white;
+    color: var(--light);
     padding: 20px;
     box-sizing: content-box;
+}
+
+.Credits svg:hover {
+    color: white;
 }
 
 .Credits p{

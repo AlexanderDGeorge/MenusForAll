@@ -40,7 +40,7 @@ export default function SearchFilter() {
     const [showAdvanced, setShowAdvanced] = useState(false);
     const { setResults } = useContext(ResultsContext);
     const { lat, lon, cityID, radius, cuisines, categories, 
-        establishment, query, sort, setSort, order, setOrder
+        establishment, query, sort, setSort, order
     } = useContext(SearchParamsContext);
 
     async function handleSearch() {

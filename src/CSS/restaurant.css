@@ -1,7 +1,32 @@
 .Restaurant {
+    height: 100vh;
+    width: 100vw;
     display: grid;
     grid-template-rows: 100px auto;
     grid-template-areas: 
         'header'
         'body';
+}
+
+.Restaurant-Detail {
+    width: 100vw;
+}
+
+.RD-Container {
+    padding: 2%;
+}
+
+.RD-Container h1 {
+    font-size: 48px;
+}
+
+.Restaurant-Pictures {
+    height: 200px;
+    display: flex;
+    overflow-x: scroll;
+}
+
+.Restaurant-Pictures img {
+    height: 100%;
+    margin: 5px 5px 5px 0;
 }

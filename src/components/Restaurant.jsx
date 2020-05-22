@@ -41,8 +41,10 @@ function RestaurantDetail({ restaurant }) {
     function RestaurantPictures() {
 
         return (
-            <div>
-                {restaurant.photos.map}
+            <div className='Restaurant-Pictures'>
+                {restaurant.photos.map(photo => {
+                    return <img src={photo.photo.url} alt="" srcset=""/>
+                })}
             </div>
         )
     }
@@ -50,8 +52,10 @@ function RestaurantDetail({ restaurant }) {
     return (
         <section className='Restaurant-Detail'>
             <RestaurantPictures />
-            <h1>{restaurant.name}</h1>
+            <section className='RD-Container'>
+                <h1>{restaurant.name}</h1>
 
+            </section>
         </section>
     )
 }

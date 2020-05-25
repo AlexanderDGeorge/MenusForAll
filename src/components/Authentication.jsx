@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { signInWithGoogle } from '../firebase';
+import { signInWithGoogle, auth } from '../firebase';
 import { UserContext } from './Application';
 
 
@@ -51,6 +51,19 @@ function AuthForm({ type }) {
         return type === 'login';
     }
 
+    async function handleSubmit() {
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword(
+                email,
+                password
+            );
+            console.log(user);
+        } catch (error) {
+            alert(error);
+        }
+    }
+
+
     return (
         <section className='AuthForm'>
             <h2>{typeIs() ? 'Log In' : 'Sign Up'}</h2>
@@ -79,7 +92,7 @@ function AuthForm({ type }) {
                     placeholder='Password'
                     className='AuthForm-input'
                 />
-                <button className='AuthForm-submit'>
+                <button className='AuthForm-submit' onClick={handleSubmit}>
                     {typeIs() ? 'Log In' : 'Sign Up'}
                 </button>
             </form>

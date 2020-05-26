@@ -202,6 +202,13 @@
 	align-items: center;
 }
 
+.Landing-Tint {
+	position: absolute;
+	height: 70%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+}
+
 .NavBar {
 	position: fixed;
 	height: 100px;
@@ -212,6 +219,7 @@
 	align-items: center;
 	color: white;
 	grid-area: nav;
+	z-index: 1;
 }
 
 .NavBar ul {

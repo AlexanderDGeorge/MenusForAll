@@ -52,13 +52,14 @@ export function Message({ message, onClick }) {
 	});
 
 	function handleHover() {
+		setBox({ scale: 1.1, shadow: 15 });
 		setToggle(true);
 		setTimeout(() => setBox({ opacity: 0 }), 1000);
 	}
 
 	return (
 		<animated.div
-			id="Message"
+			className="Message"
 			style={box}
 			onClick={onClick}
 			onMouseEnter={handleHover}

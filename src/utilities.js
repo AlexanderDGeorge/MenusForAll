@@ -7,17 +7,16 @@ export const zomatoRequest = axios.create({
 	},
 });
 
-export const storeLocation = () => {
-	if ('geolocation' in navigator) {
-		navigator.geolocation.getCurrentPosition(async function handle(
-			position
-		) {
-			let lat = position.coords.latitude;
-			let lon = position.coords.longitude;
-			localStorage.setItem('lat', JSON.stringify(lat));
-			localStorage.setItem('lon', JSON.stringify(lon));
+export async function storeLocation() {
+	function getCurrentPosition() {
+		return new Promise((resolve, reject) => {
+			navigator.geolocation.getCurrentPosition(resolve, reject);
 		});
-	} else {
-		console.log('no geolocation');
 	}
-};
+
+	const position = await getCurrentPosition();
+	const lat = position.coords.latitude;
+	const lon = position.coords.longitude;
+	localStorage.setItem('lat', JSON.stringify(lat));
+	localStorage.setItem('lon', JSON.stringify(lon));
+}

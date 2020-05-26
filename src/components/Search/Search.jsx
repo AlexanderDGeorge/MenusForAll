@@ -44,17 +44,8 @@ export function SearchBar() {
 	const [newCity, setNewCity] = useState('');
 	const location = useLocation();
 	const history = useHistory();
-
-	useEffect(() => {
-		getLocation();
-	}, []);
-
 	const { setResults } = useContext(ResultsContext);
 	const {
-		lat,
-		setLat,
-		lon,
-		setLon,
 		city,
 		setCity,
 		cityID,
@@ -69,24 +60,24 @@ export function SearchBar() {
 		order,
 	} = useContext(SearchParamsContext);
 
-	async function getLocation() {
-		let lat = JSON.parse(localStorage.getItem('lat'));
-		let lon = JSON.parse(localStorage.getItem('lon'));
-		if (lat && lon) {
-			setLat(lat);
-			setLon(lon);
-		} else {
-			storeLocation();
-			lat = JSON.parse(localStorage.getItem('lat'));
-			lon = JSON.parse(localStorage.getItem('lon'));
-			setLat(lat);
-			setLon(lon);
+	const [lat, setLat] = useState(JSON.parse(localStorage.getItem('lat')));
+	const [lon, setLon] = useState(JSON.parse(localStorage.getItem('lon')));
+
+	useEffect(() => {
+		if (lat && lon && !newCity) {
+			zomatoRequest
+				.get(`/cities?lat=${lat}&lon=${lon}`)
+				.then((response) => {
+					setCity(response.data.location_suggestions[0].name);
+					setNewCity(response.data.location_suggestions[0].name);
+				});
 		}
-		const response = await zomatoRequest.get(
-			`/cities?lat=${lat}&lon=${lon}`
-		);
-		setCity(response.data.location_suggestions[0].name);
-		setNewCity(response.data.location_suggestions[0].name);
+	}, [lat, lon, newCity, setCity, setNewCity]);
+
+	function handleLocate() {
+		storeLocation();
+		setLat(JSON.parse(localStorage.getItem('lat')));
+		setLon(JSON.parse(localStorage.getItem('lon')));
 	}
 
 	async function handleClick() {
@@ -157,7 +148,7 @@ export function SearchBar() {
 				/>
 				<MdLocationSearching
 					className="Search-Bar-Locate"
-					onClick={getLocation}
+					onClick={handleLocate}
 				/>
 				<button onClick={handleClick}>
 					<MdSearch />

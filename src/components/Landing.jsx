@@ -44,6 +44,7 @@ export default function Landing() {
 function Search() {
 	return (
 		<section className="Landing-Search">
+			<div className="Landing-Tint"></div>
 			<SearchBar />
 		</section>
 	);

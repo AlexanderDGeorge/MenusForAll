@@ -11,7 +11,7 @@
 	background-color: white;
 }
 
-#Message {
+.Message {
 	position: fixed;
 	height: 100px;
 	width: 300px;
@@ -20,13 +20,13 @@
 	right: 20px;
 	padding: 20px;
 	border: 1px solid var(--dark);
-	border-radius: 6px 6px 0 0;
+	border-radius: var(--border-radius);
 	color: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-#Message:hover {
+.Message:hover {
 	box-shadow: var(--box-shadow);
 }

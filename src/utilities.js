@@ -7,7 +7,7 @@ export const zomatoRequest = axios.create({
 	},
 });
 
-export const getLocation = () => {
+export const storeLocation = () => {
 	if ('geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition(async function handle(
 			position

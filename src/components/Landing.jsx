@@ -19,10 +19,11 @@ import {
 import { SearchBar } from './Search/Search';
 import { SearchParamsContext } from './Application';
 import { Message } from './Components';
-import { getLocation } from '../utilities';
+import { storeLocation } from '../utilities';
 
 export default function Landing() {
-	const { lat } = useContext(SearchParamsContext);
+	let lat = JSON.parse(localStorage.getItem('lat'));
+	let lon = JSON.parse(localStorage.getItem('lon'));
 
 	return (
 		<section className="Landing">
@@ -30,12 +31,12 @@ export default function Landing() {
 			<Search />
 			<Categories />
 			<Credits />
-			{!lat ? (
+			{lat && lon ? null : (
 				<Message
 					message="Allow Menus For All to access your location for the best results"
-					onClick={getLocation}
+					onClick={storeLocation}
 				/>
-			) : null}
+			)}
 		</section>
 	);
 }

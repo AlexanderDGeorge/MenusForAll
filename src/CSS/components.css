@@ -1,12 +1,32 @@
 .Toggle {
-    position: relative;
-    border: 1px solid var(--dark);
+	position: relative;
+	border: 1px solid var(--dark);
 }
 
 .Toggle-button {
-    position: absolute;
-    border: 1px solid var(--dark);
-    border-radius: 50%;
-    bottom: -1px;
-    background-color: white;
+	position: absolute;
+	border: 1px solid var(--dark);
+	border-radius: 50%;
+	bottom: -1px;
+	background-color: white;
+}
+
+#Message {
+	position: fixed;
+	height: 100px;
+	width: 300px;
+	background: var(--dark);
+	bottom: 20px;
+	right: 20px;
+	padding: 20px;
+	border: 1px solid var(--dark);
+	border-radius: 6px 6px 0 0;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#Message:hover {
+	box-shadow: var(--box-shadow);
 }
